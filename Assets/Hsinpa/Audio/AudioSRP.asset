@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db35ab70d62745346994b3b107468b74, type: 3}
+  m_Name: AudioSRP
+  m_EditorClassIdentifier: AudioUti::Hsinpa.Utility.AudioSRP
+  tag: UNIVERSAL
+  audioSets:
+  - id: WRONG_CHOICE
+    audioClip: {fileID: 8300000, guid: b4b802be030f76b46af0f84ead3c9990, type: 3}
+  - id: UI_CLICK
+    audioClip: {fileID: 8300000, guid: 5f910a0925d5fdb4a8420bcb34b438aa, type: 3}
