@@ -35,6 +35,14 @@ namespace Hsinpa
             string gestureAnimation = (string) parameters[1];
 
             ControllerHandAnimator controllerHandAnimator = (handState == HandState.LEFTHAND) ? leftAnimator : rightAnimator;
+        
+            if (gestureAnimation == GestureState.DEFAULT)
+            {
+                if (handState == HandState.LEFTHAND) OnLeftTriggerCancel(default(CallbackContext));
+                if (handState == HandState.RIGHTHAND) OnRightTriggerCancel(default(CallbackContext));
+                return;
+            }
+            
             PlayEventAnim(controllerHandAnimator, gestureAnimation, true);
         }
 

@@ -31,15 +31,15 @@ namespace Hsinpa
             this._xrInputActions.Enable();
         }
 
+        public Transform GetParentObject()
+        {
+            return maskOutlineTarget?.transform;
+        }
+
         public void Interaction(bool enable)
         {
             interactable = enable;
             collider.enabled = enable;
-
-            if (maskOutlineTarget != null)
-            {   
-                maskOutlineTarget.SetOutlined(enable);
-            }
         }
 
         void Start()
@@ -48,12 +48,13 @@ namespace Hsinpa
             _xrInputActions.XRIRightInteraction.Activate.started += (x) => { OnColliderSelected(x, HandState.RIGHTHAND); };
             _xrInputActions.XRILeftInteraction.Activate.started += (x) => { OnColliderSelected(x, HandState.LEFTHAND); };
 
-
-            xrInteractable.hoverEntered.AddListener(x => _isHovered = true);
+            xrInteractable.hoverEntered.AddListener(x =>
+            {
+                if (maskOutlineTarget != null && interactable) maskOutlineTarget.SetOutlined(true);
+                _isHovered = true;
+            });
             xrInteractable.hoverExited.AddListener(x => {
-                if (!_isSelected)
-                {
-                }
+                if (maskOutlineTarget != null) maskOutlineTarget.SetOutlined(false);
                 _isHovered = false;                    
             });
         }

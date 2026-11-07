@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Hsinpa.UI;
 using Hsinpa.Utility;
 using Hsinpa.Utility.UI;
+using TMPro;
 using UnityEngine;
 
 namespace Hsinpa
@@ -10,9 +11,6 @@ namespace Hsinpa
     public class GrinderManager : MonoBehaviour, ISceneManager
     {
         private Scene2Collider[] interactableColliders;
-
-        [SerializeField]
-        private GrinderSpin grinderSpinAnime;
 
         [SerializeField]
         private CanvasGroup uiCavnas;
@@ -40,14 +38,19 @@ namespace Hsinpa
         private Scene5Collider scene5ColliderGrab;
 
         [SerializeField]
-        private Transform scene5ColliderHolder;
+        private Animator grindToolTextCanvas;
+
+        [SerializeField]
+        private TextMeshProUGUI grindToolText;
 
         [Header("Scene 7")]
         [SerializeField]
         private SimpleSelectCollider scene7AirMachineCollider;
-
         [SerializeField]
         private Animator scene7GrinderButtonUI;
+
+        [SerializeField]
+        private Animator scene7MaskButtonUI;
 
         [SerializeField]
         private Animator scene7HeadAnimator;
@@ -99,20 +102,17 @@ namespace Hsinpa
             scene7MouthCollider.isSelectedCallback += OnMouthSelect;
             scene7AirMachineCollider.isSelectedCallback += OnAirMachineBtnSelect;
 
-            grinderSpinAnime.enabled = false;
-
-            scene5ColliderGrab.SetUp();
-            scene5ColliderHolder.gameObject.SetActive(false);
+            scene5ColliderGrab.SetUp(grindToolTextCanvas);
+            scene5ColliderGrab.gameObject.SetActive(false);
         }
 
         void OnColliderSelected(bool isSelected)
         {
             colliderSelectedCount++;
 
-            if (colliderSelectedCount >= interactableColliders.Length)
+            if (isSelected)
             {
                 messageHolder.SetContent(StaticString.SCENE2COMPLETENOTICE, StaticString.SCENE2COMPLETETITLE, MessageHolder.IconState.Victory);
-
 
                 _captionCtrl.Play(LocalizationManager.WorkSheet.Cut2_Complete, () =>
                 {
@@ -147,9 +147,10 @@ namespace Hsinpa
         public void Scene5Start()
         {
             Reset();
-            scene5ColliderHolder.gameObject.SetActive(true);
-            grinderSpinAnime.enabled = true;
+            scene5ColliderGrab.gameObject.SetActive(true);
             grinderMachineAudio.Play();
+
+            grindToolText.text = StaticString.GRIND_TOOL_NOTICE;
 
             scene5ColliderGrab.StartSimulation(true, (x) =>
             {
@@ -180,8 +181,9 @@ namespace Hsinpa
         {
             Reset();
             uiCavnas.SetVisible(true);
-            scene5ColliderHolder.gameObject.SetActive(false);
+            scene5ColliderGrab.gameObject.SetActive(false);
 
+            scene7GrinderButtonUI.gameObject.SetActive(true);
             scene7GrinderButtonUI.SetBool("flash", true);
             scene7HeadAnimator.gameObject.SetActive(true);
             scene7NoseCollider.Interaction(false);
@@ -205,9 +207,9 @@ namespace Hsinpa
         public async void Scene8Start()
         {
             Reset();
-            scene5ColliderHolder.gameObject.SetActive(true);
+            scene5ColliderGrab.gameObject.SetActive(true);
+            grindToolText.text = StaticString.GRIND_TOOL_RENOTICE;
 
-            grinderSpinAnime.enabled = true;
             scene5ColliderGrab.StartSimulation(true, (x) =>
             {
                 PlayFlamethrower(x.name, true);
@@ -223,7 +225,6 @@ namespace Hsinpa
                     {
                         completeScene8Callback?.Invoke();
                     });
-
                 }
             }, () =>
             {
@@ -266,11 +267,14 @@ namespace Hsinpa
 
         private async void OnAirMachineBtnSelect()
         {
+            airMachineAudio.Play(); 
             await _captionCtrl.PlayAsync(LocalizationManager.WorkSheet.Cut8_AirComplete);
             await _captionCtrl.PlayAsync(LocalizationManager.WorkSheet.Cut8_Mask);
+
+            scene7MaskButtonUI.gameObject.SetActive(true);
             this.scene7IsAirMachineClickFlag = true;
             scene7NoseCollider.Interaction(true);   
-            airMachineAudio.Play();             
+            scene7GrinderButtonUI.gameObject.SetActive(false);
         }
 
         private void OnNoseSelect()
@@ -283,6 +287,7 @@ namespace Hsinpa
                 scene7NoseCollider.Interaction(false);
                 scene7MouthCollider.Interaction(true);
                 UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.UI_CLICK); 
+                scene7MaskButtonUI.gameObject.SetActive(false);
 
                 _ = UtilityFunc.DoDelayWork(4, () =>
                 {
@@ -324,12 +329,14 @@ namespace Hsinpa
 
             scene5ColliderGrab.Reset();
             scene7HeadAnimator.gameObject.SetActive(false);
+            scene7GrinderButtonUI.gameObject.SetActive(false);
+            scene7MaskButtonUI.gameObject.SetActive(false);
             scene7GrinderButtonUI.SetBool("flash", false);
-            grinderSpinAnime.enabled = false;
             scene7AirMachineCollider.Interaction(false);
             grinderMachineAudio.Stop();
             // airMachineAudio.Stop();
             grinderingAudio.Stop();
+            grindToolTextCanvas.gameObject.SetActive(false);
         }
 
         public void Enter()

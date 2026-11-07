@@ -1,8 +1,10 @@
 using System;
 using Hsinpa.UI;
+using Hsinpa.Utility;
 using Hsinpa.Utility.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Hsinpa
 {
@@ -81,32 +83,53 @@ namespace Hsinpa
         {
             Reset(false);
             completeFlag = true;
+
+            UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.COMPLETE); 
         }
 
         private void OnMouthMaskHoldColliderEvent(Scene4Collider collider, bool isSelected)
         {
             selectedScene4Collider = (isSelected) ? collider : null;
 
-            if (!collider.isCorrectAnswer)
+            if (isSelected)
             {
-                uiCavnas.SetVisible(true);
-                messaegeHolder.SetContent(StaticString.SCENE4MISTAKE, StaticString.SCENE4TITLE, MessageHolder.IconState.Error);
-                this._captionCtrl.Play(LocalizationManager.WorkSheet.Cut4_Mistake, () => { uiCavnas.SetVisible(false);});
+                if (!collider.isCorrectAnswer)
+                {
+                    uiCavnas.SetVisible(true);
 
-            } else if (collider.gameObject.activeSelf && collider.isCorrectAnswer)
+                    if (collider.name == "dustMask")
+                    {
+                        messaegeHolder.SetContent(StaticString.NORMAL_MASK_NOTICE, StaticString.NORMAL_MASK_TITLE, MessageHolder.IconState.Error);
+                    } else if (collider.name == "gasMask")
+                    {
+                        messaegeHolder.SetContent(StaticString.HALF_MASK_NOTICE, StaticString.HALF_MASK_TITLE, MessageHolder.IconState.Error);                    
+                    }
+
+                    this._captionCtrl.Play(LocalizationManager.WorkSheet.Cut4_Mistake, () => { uiCavnas.SetVisible(false);});
+
+                } else if (collider.gameObject.activeSelf && collider.isCorrectAnswer)
+                {
+                    uiCavnas.SetVisible(true);
+                    messaegeHolder.SetContent(StaticString.N95_NOTICE, StaticString.N95_TITLE, MessageHolder.IconState.Info);
+                    this._captionCtrl.Play(LocalizationManager.WorkSheet.Cut4_Complete,  () => { uiCavnas.SetVisible(false);});
+                }
+            } else
             {
-                uiCavnas.SetVisible(true);
-                messaegeHolder.SetContent(StaticString.SCENE4NOTICE, StaticString.SCENE4TITLE, MessageHolder.IconState.Info);
-                this._captionCtrl.Play(LocalizationManager.WorkSheet.Cut4_Complete,  () => { uiCavnas.SetVisible(false);});
+                collider.StartCount( beginCount: 5, forceStart: true);                
             }
-
-            collider.StartCount( beginCount: 5, forceStart: true);
         }
 
 
         private void OnEyeMaskHoldColliderEvent(Scene4Collider collider, bool isSelected)
         {
-            
+            if (isSelected)
+            {
+                messaegeHolder.SetContent(StaticString.SAFE_GLASS_MASK_NOTICE, StaticString.SAFE_GLASS_MASK_TITLE, MessageHolder.IconState.Victory);
+                UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.COMPLETE);                
+            } else
+            {
+                messaegeHolder.SetContent(StaticString.SCENE4NOTICE, StaticString.SCENE4TITLE, MessageHolder.IconState.Info);
+            }
         }
 
         private void OnMouthMaskPairedColliderEvent(Scene4Collider collider)
@@ -119,12 +142,13 @@ namespace Hsinpa
 
         private void OnScene4HoldOnTriggerEvent(Scene4Collider collider)
         {
+            UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.WEAR);
 
             if (collider.tag == "EyeMask")
             {
                 collider.gameObject.SetActive(false);  
                 eyeMaskFlag = true;
-
+                
                 if (eyeMaskFlag && mouthMaskFlag)
                 {
                     uiCavnas.SetVisible(true);

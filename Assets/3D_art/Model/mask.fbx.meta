@@ -3,7 +3,27 @@ guid: 0d40e3b252be2974d93d834f848a6b9a
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: n95Mask_MT
+    second: {fileID: 2100000, guid: 662cc7c4b5d15fd4f87b3027a047e154, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mask_col
+    second: {fileID: 2800000, guid: 442c9ab072bde2848aee2b9c4a225294, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mask_mtl
+    second: {fileID: 2800000, guid: cdd39b6e726f331408178d0f6d751ff3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mask_nml
+    second: {fileID: 2800000, guid: 0962464fbba9bff43a3e4ba6f4265d11, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

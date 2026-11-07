@@ -18,3 +18,7 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: b4b802be030f76b46af0f84ead3c9990, type: 3}
   - id: UI_CLICK
     audioClip: {fileID: 8300000, guid: 5f910a0925d5fdb4a8420bcb34b438aa, type: 3}
+  - id: WEAR
+    audioClip: {fileID: 8300000, guid: b65a43b60bc8d964987b646157335689, type: 3}
+  - id: COMPLETE
+    audioClip: {fileID: 8300000, guid: 2a6733ab20e155f4a9882537114125c7, type: 3}

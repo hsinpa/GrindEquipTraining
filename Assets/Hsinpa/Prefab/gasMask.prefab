@@ -235,6 +235,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 7541484331717990999}
   hintText: {fileID: 2413969181912644658}
   xrGrabInteractable: {fileID: 2094949836547151301}
+  maskOutlineTarget: {fileID: 0}
 --- !u!1 &3601975675940178058
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,7 +566,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7236698678132553728
 Transform:
   m_ObjectHideFlags: 0
@@ -792,7 +793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6926205240493263552
 Transform:
   m_ObjectHideFlags: 0

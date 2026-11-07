@@ -91,7 +91,8 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: "\u5C40\u90E8\u6392\u6C23\u78BA\u8A8D\u5B8C\u6210"
   m_Markers:
-    m_Objects: []
+    m_Objects:
+    - {fileID: 1274761551731034652}
   m_TrackProperties:
     volume: 1
     stereoPan: 0
@@ -159,7 +160,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.TimelineAsset
   m_Version: 0
   m_Tracks:
-  - {fileID: 8794544338423503299}
   - {fileID: -7555096941969226747}
   m_FixedDuration: 0
   m_EditorSettings:
@@ -167,7 +167,7 @@ MonoBehaviour:
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: 0}
---- !u!114 &8794544338423503299
+--- !u!114 &1274761551731034652
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,23 +176,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b22792c3b570444eb18cb78c2af3a74, type: 3}
-  m_Name: VoiceTrack_zhcht
-  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.AudioTrack
-  m_Version: 3
-  m_AnimClip: {fileID: 0}
-  m_Locked: 0
-  m_Muted: 0
-  m_CustomPlayableFullTypename: 
-  m_Curves: {fileID: 0}
-  m_Parent: {fileID: 11400000}
-  m_Children: []
-  m_Clips: []
-  m_Markers:
-    m_Objects:
-    - {fileID: -5840904637394470266}
-    - {fileID: -6747743611899390624}
-  m_TrackProperties:
-    volume: 1
-    stereoPan: 0
-    spatialBlend: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalEmitter
+  m_Time: 0.08333333333333333
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 0d0693970ef0fc44aa230cab4943a6b9, type: 2}

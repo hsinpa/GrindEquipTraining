@@ -1,3 +1,4 @@
+using Hsinpa.Utility;
 using UnityEngine;
 using UnityEngine.Video;
 using static UnityEngine.InputSystem.InputAction;
@@ -156,7 +157,9 @@ namespace Hsinpa
             cameraMaskManager.Enter();
             cameraMaskManager.SetText("", StaticString.SCENE6NOTICE);
 
-            captionCtrl.Play(LocalizationManager.WorkSheet.Cut6, () =>
+            captionCtrl.Play(LocalizationManager.WorkSheet.Cut6);
+
+            _ = UtilityFunc.DoDelayWork(20, () =>
             {
                 if (currentStage == StaticEnum.SimulationStage.Stage_6) RunStage7();
             });
@@ -187,7 +190,12 @@ namespace Hsinpa
             currentStage = StaticEnum.SimulationStage.Stage_9;
             scene2Manager.Scene9Start();
 
-            captionCtrl.Play(LocalizationManager.WorkSheet.Cut10);
+            UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.COMPLETE); 
+
+            _ = UtilityFunc.DoDelayWork(1, () =>
+            {
+                captionCtrl.Play(LocalizationManager.WorkSheet.Cut10); 
+            });
         }
 
         void OnSubmitEvent(UnityEngine.InputSystem.InputAction.CallbackContext callbackContext)
@@ -221,6 +229,8 @@ namespace Hsinpa
         {
             if (currentStage == StaticEnum.SimulationStage.Stage_9)
             {
+                UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.UI_CLICK); 
+
                 Application.Quit();
             }
         }

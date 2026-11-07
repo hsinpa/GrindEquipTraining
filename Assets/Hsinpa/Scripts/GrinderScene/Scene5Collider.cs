@@ -43,8 +43,12 @@ namespace Hsinpa
 
         public XRGrabInteractable GetInteractable() { return xrGrabInteractable; }
 
-        public void SetUp()
+        private bool selectedFlag = false;
+        private Animator _grindToolTextCanvas;
+
+        public void SetUp(Animator grindToolTextCanvas)
         {   
+            this._grindToolTextCanvas = grindToolTextCanvas;
             this.rigidbody = this.GetComponent<Rigidbody>();
 
             spawnPosition = transform.position;
@@ -68,6 +72,7 @@ namespace Hsinpa
 
         public void StartSimulation(bool simulate, Action<GameObject> touchAction, Action leaveAction)
         {
+            this._grindToolTextCanvas.gameObject.SetActive(true);
             isInteractable = simulate;
             xrGrabInteractable.enabled = true;
             onTouchGrinderEvent = touchAction;
@@ -93,16 +98,21 @@ namespace Hsinpa
         }
 
         private void OnColliderSelected(SelectEnterEventArgs a)
-        {            
+        {   
+            this._grindToolTextCanvas.gameObject.SetActive(false);
             rigidbody.constraints = RigidbodyConstraints.None;
+            selectedFlag = true;
             if (isInteractable) onColliderHoldEventCallback?.Invoke(this, true);
         }
 
         private void OnColliderUnselected(SelectExitEventArgs a)
         {
             if (isInteractable) onColliderHoldEventCallback?.Invoke(this, false);
-
-            _ = Utility.UtilityFunc.DoDelayWork(5, () => Reset(false));
+            selectedFlag = false;
+            _ = Utility.UtilityFunc.DoDelayWork(5, () =>
+            {
+                if (!selectedFlag) Reset(false);   
+            });
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -111,8 +121,6 @@ namespace Hsinpa
             {
                 onTouchGrinderEvent?.Invoke(collision.gameObject);
             }
-
-            Debug.Log(collision.gameObject.name);
         }
 
         private void OnCollisionExit(Collision collision)

@@ -103,9 +103,10 @@ namespace Hsinpa
 
         private void OnCtrlTriggerActivate(CallbackContext e)
         {
+            if (textUI.enabled) UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.UI_CLICK); 
+
             nextPageEvent?.Invoke();
             nextPageEvent = null;
-            UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.UI_CLICK); 
         }
 
         private void OnVideoFinished(VideoPlayer source)

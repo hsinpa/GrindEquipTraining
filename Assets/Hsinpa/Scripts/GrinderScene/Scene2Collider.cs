@@ -3,6 +3,7 @@ using Hsinpa.Outline;
 using Hsinpa.Utility;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using static UnityEngine.InputSystem.InputAction;
 
 
@@ -21,6 +22,9 @@ namespace Hsinpa
 
         [SerializeField]
         private MaskOutlineTarget maskOutlineTarget;
+
+        [SerializeField]
+        private bool isCorrect;
 
         private BoxCollider collider;
 
@@ -46,6 +50,18 @@ namespace Hsinpa
             collider.enabled = enable;
         }
 
+        private static string GetHand(IXRInteractor interactor)
+        {
+            string interactorName = interactor.transform.parent.gameObject.name;
+
+            Debug.Log(interactorName);
+
+            if (interactorName.Contains("Left", StringComparison.OrdinalIgnoreCase)) return HandState.LEFTHAND;
+            if (interactorName.Contains("Right", StringComparison.OrdinalIgnoreCase)) return HandState.RIGHTHAND;
+
+            return "Unknown";
+        }
+
         void Start()
         {
             _xrInputActions.XRIRightInteraction.Activate.started += (x) => { OnColliderSelected(x, HandState.RIGHTHAND); };
@@ -53,13 +69,19 @@ namespace Hsinpa
             _xrInputActions.XRILeftInteraction.Activate.started += (x) => { OnColliderSelected(x, HandState.LEFTHAND); };
             _xrInputActions.XRILeftInteraction.Activate.canceled += OnColliderUnselected;
 
-            xrInteractable.hoverEntered.AddListener(x => _isHovered = true);
+            xrInteractable.hoverEntered.AddListener(x =>
+            {
+                _isHovered = true;
+                SimpleEventSystem.Send(StaticEvent.TriggerEvent, GetHand(x.interactorObject), GestureState.POINT_EVENT);    
+            });
+
             xrInteractable.hoverExited.AddListener(x => {
                 if (!_isSelected)
                 {
                     SetMaterialFloat(ColliderAlphaStrengthID, 0);
                 }
                 _isHovered = false;                    
+                SimpleEventSystem.Send(StaticEvent.TriggerEvent, GetHand(x.interactorObject), GestureState.DEFAULT);
             });
 
             Reset();
@@ -95,12 +117,11 @@ namespace Hsinpa
                 if (isSelectedCallback != null && interactable)
                 {
                     Interaction(false);
-                    isSelectedCallback(true);
-
+                    isSelectedCallback(isCorrect);
                     SetMaterialFloat(ColliderAlphaStrengthID, 0.5f);
 
-                    SimpleEventSystem.Send(StaticEvent.TriggerEvent, hand_state, GestureState.POINT_EVENT);
-                    UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.UI_CLICK);
+                    string audioID = (isCorrect) ? Audio.UI_CLICK : Audio.WRONG_CHOICE;
+                    UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, audioID);
                 }                
             }
         }
