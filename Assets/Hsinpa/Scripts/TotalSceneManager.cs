@@ -73,7 +73,7 @@ namespace Hsinpa
             teleportManager.grinderTeleportAnchor.SetTarget(cameraTransform);
             maskManager.Setup(cameraTransform, captionCtrl);
 
-            localizationManager.SetLanguage((Loc.CurrentLanguage == "zhcht") ? 0 : 1); 
+            Debug.Log(Loc.CurrentLanguage);
             RunStage0();
         }
 
@@ -91,6 +91,7 @@ namespace Hsinpa
 
         void RunStage1()
         {
+            localizationManager.SetLanguage((Loc.CurrentLanguage == "zhcht") ? 0 : 1); 
             scene2Manager.ShowGrinderMachine(true);
             currentStage = StaticEnum.SimulationStage.Stage_1;
             cameraMaskManager.Dispose();
