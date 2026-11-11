@@ -5,7 +5,6 @@ using Hsinpa.Utility.UI;
 using UnityEngine.Video;
 using UnityEngine.UI;
 using System;
-using static UnityEngine.InputSystem.InputAction;
 using Hsinpa.Utility;
 
 namespace Hsinpa
@@ -31,7 +30,7 @@ namespace Hsinpa
         private RawImage videoRawImage;
 
         [SerializeField]
-        private GameObject countDownObj;
+        private Button toStage1Btn;
 
         [SerializeField]
         private TextMeshProUGUI countDownText;
@@ -45,8 +44,9 @@ namespace Hsinpa
             this._xrInputActions = new XRIDefaultInputActions();
             this._xrInputActions.Enable();
 
-            _xrInputActions.XRIRightInteraction.Activate.started += OnCtrlTriggerActivate;
-            _xrInputActions.XRILeftInteraction.Activate.started += OnCtrlTriggerActivate;
+            // _xrInputActions.XRIRightInteraction.Activate.started += OnCtrlTriggerActivate;
+            // _xrInputActions.XRILeftInteraction.Activate.started += OnCtrlTriggerActivate;
+            toStage1Btn.onClick.AddListener(OnCtrlTriggerActivate);
         }
 
 
@@ -82,16 +82,6 @@ namespace Hsinpa
             textUI.text = content;
         }
 
-        public async void SetCountDown(int duration, Action callback)
-        {
-            countDownObj.SetActive(true);
-            nextPageEvent = callback;
-
-            // await TextCountdown.Countdown(countDownText,  "({0}秒)", duration);
-
-            // callback?.Invoke();
-        }
-
         public void PlayVideo(VideoClip videoClip, Action endCallback)
         {
             videoPlayer.clip = videoClip;
@@ -101,7 +91,15 @@ namespace Hsinpa
             OnVideoEndEvent = endCallback;
         }
 
-        private void OnCtrlTriggerActivate(CallbackContext e)
+        public void ShowStartMenu(Action exitCallback)
+        {
+            nextPageEvent = exitCallback;
+
+            SetText(Loc.Get("SCENE0TITLE"), Loc.Get("SCENE0NOTICE"));
+            toStage1Btn.gameObject.SetActive(true);
+        }
+
+        private void OnCtrlTriggerActivate()
         {
             if (textUI.enabled) UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.UI_CLICK); 
 
@@ -128,7 +126,8 @@ namespace Hsinpa
             SetText("", "");
             textUI.enabled = is_show;
 
-            countDownObj.SetActive(false);
+            toStage1Btn.gameObject.SetActive(false);
         }
     }
+
 }

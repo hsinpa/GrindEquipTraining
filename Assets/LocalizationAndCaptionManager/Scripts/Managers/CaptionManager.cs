@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.Timeline;
+using Hsinpa;
 
 public class CaptionManager : MonoBehaviour
 {
@@ -61,15 +62,20 @@ public class CaptionManager : MonoBehaviour
         showCoroutine = StartCoroutine(ShowIEnumerator(workSheet, key, captions, callback));
     }
 
+    private string GetKey(int code, string key)
+    {
+        return $"{code}_{key}";
+    }
+
     private CaptionStruct GetCaptionStruct(string content)
     {
         if (content.Contains("[system]"))
         {
-            return new CaptionStruct { title="系統", content= content.Replace("[system]", "") };
+            return new CaptionStruct { title=Loc.Get("CAPTION_SYSTEM"), content= content.Replace("[system]", "") };
         }
         if (content.Contains("[manager]"))
         {
-            return new CaptionStruct { title="主管", content= content.Replace("[manager]", "") };
+            return new CaptionStruct { title=Loc.Get("CAPTION_MANAGER"), content= content.Replace("[manager]", "") };
         }
 
         return default(CaptionStruct);

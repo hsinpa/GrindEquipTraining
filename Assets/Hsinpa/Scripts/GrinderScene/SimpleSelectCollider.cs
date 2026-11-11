@@ -23,6 +23,9 @@ namespace Hsinpa
         [SerializeField]
         private MaskOutlineTarget maskOutlineTarget;
 
+        [SerializeField]
+        private bool playClickAudio = true;
+
         void Awake()
         {
             collider =  xrInteractable.GetComponent<BoxCollider>();
@@ -70,7 +73,8 @@ namespace Hsinpa
                     isSelectedCallback?.Invoke();
 
                     SimpleEventSystem.Send(StaticEvent.TriggerEvent, hand_state, GestureState.POINT_EVENT);
-                    UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.UI_CLICK);
+
+                    if (playClickAudio) UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.UI_CLICK);
                 }                
             }
         }

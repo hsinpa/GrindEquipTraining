@@ -83,17 +83,17 @@ namespace Hsinpa
 
             if (itemName == "n95")
             {
-                hintText.text= StaticString.N95_NOTICE;
+                hintText.text= Loc.Get("N95_NOTICE");
             }
 
             if (itemName == "dustMask")
             {
-                hintText.text= StaticString.NORMAL_MASK_NOTICE;
+                hintText.text= Loc.Get("NORMAL_MASK_NOTICE");
             }
 
             if (itemName == "gasMask")
             {
-                hintText.text= StaticString.HALF_MASK_NOTICE;
+                hintText.text= Loc.Get("HALF_MASK_NOTICE");
             }
         }
 

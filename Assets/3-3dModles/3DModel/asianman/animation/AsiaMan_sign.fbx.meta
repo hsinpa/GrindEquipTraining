@@ -1,12 +1,52 @@
 fileFormatVersion: 2
 guid: 9630e992329041e4aa88c7a5e087a7b4
 ModelImporter:
-  serializedVersion: 21202
+  serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
     second: sign
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DefaultMaterial.001
+    second: {fileID: 2100000, guid: d4dbbfb116f33524aad646111c73f6d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EyeAO
+    second: {fileID: 2100000, guid: 71e3574974b10e7478cd51bab2e37df3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyelash
+    second: {fileID: 2100000, guid: 3512692b2c2b83846ba2a947756e313f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyes
+    second: {fileID: 2100000, guid: e133d650e6e806a4cbda00c0335bd1ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Head
+    second: {fileID: 2100000, guid: 699f84c05e7bfa241802b602e401fcde, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Teeth
+    second: {fileID: 2100000, guid: b2388faa592c4224c9dc7a87d7047b68, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: avaturn_hair_0_material
+    second: {fileID: 2100000, guid: fa26b5c8440133243a33d955fb585ec2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: none_MT
+    second: {fileID: 2100000, guid: 3088bf3b51830a8449b697e3f417df7a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -39,7 +79,7 @@ ModelImporter:
       name: sign
       takeName: Take 001
       internalID: 0
-      firstFrame: 1
+      firstFrame: 6
       lastFrame: 60
       wrapMode: 2
       orientationOffsetY: 0
@@ -63,7 +103,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0.96
+      additiveReferencePoseFrame: 0.9599999
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -131,6 +171,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

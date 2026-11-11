@@ -1,4 +1,4 @@
 key,zhcht,en
-Cut0_Start_Caption_0,[system]體驗過程需佩戴 VR 眼鏡，如有不適(噁心嘔吐等)請立即告知工作人員,
-Cut0_Start_Caption_1,[system]請學員評估自身狀況，若有以下生理狀況不得體驗,
-Cut0_Start_Caption_2,[system]懷孕，心臟病，高血壓，身體不適,
+Cut0_Start_Caption_0,[system]體驗過程需佩戴 VR 眼鏡，如有不適(噁心嘔吐等)請立即告知工作人員,"[system]Wear a VR headset throughout. If unwell (e.g., nausea or vomiting), tell staff immediately."
+Cut0_Start_Caption_1,[system]請學員評估自身狀況，若有以下生理狀況不得體驗,[system]Assess your health. Do not participate if any of these conditions apply.
+Cut0_Start_Caption_2,[system]懷孕，心臟病，高血壓，身體不適,"[system]Pregnancy, heart disease, high blood pressure, or feeling unwell."

@@ -1,4 +1,5 @@
 using Hsinpa.Utility;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.Video;
 using static UnityEngine.InputSystem.InputAction;
@@ -18,6 +19,9 @@ namespace Hsinpa
 
         [SerializeField]
         private Transform playeTransform;
+
+        [SerializeField]
+        private LocalizationManager localizationManager;
 
         [SerializeField]
         private CaptionCameraCtrl captionCtrl;
@@ -52,6 +56,9 @@ namespace Hsinpa
             scene2Manager.completeScene8Callback += RunStage9;
             scene2Manager.SetUp(captionCtrl);
 
+            // Not to block the raycast on UI
+            scene2Manager.ShowGrinderMachine(false);
+
             _xrInputActions.XRIRightInteraction.Activate.started += OnColliderSelected;
             _xrInputActions.XRILeftInteraction.Activate.started += OnColliderSelected;
 
@@ -65,6 +72,8 @@ namespace Hsinpa
             };
             teleportManager.grinderTeleportAnchor.SetTarget(cameraTransform);
             maskManager.Setup(cameraTransform, captionCtrl);
+
+            localizationManager.SetLanguage((Loc.CurrentLanguage == "zhcht") ? 0 : 1); 
             RunStage0();
         }
 
@@ -72,19 +81,17 @@ namespace Hsinpa
         {
             currentStage = StaticEnum.SimulationStage.Stage_0;
             cameraMaskManager.Enter();
-            cameraMaskManager.SetText(StaticString.SCENE0TITLE, StaticString.SCENE0NOTICE);
-            
-            cameraMaskManager.SetCountDown(duration: 10, () =>
+            cameraMaskManager.ShowStartMenu(() =>
             {
-                if (currentStage == StaticEnum.SimulationStage.Stage_0)
-                    RunStage1();
+                if (currentStage == StaticEnum.SimulationStage.Stage_0) RunStage1(); 
             });
-
+        
             // captionCtrl.Play(LocalizationManager.WorkSheet.Cut0_Start);
         }
 
         void RunStage1()
         {
+            scene2Manager.ShowGrinderMachine(true);
             currentStage = StaticEnum.SimulationStage.Stage_1;
             cameraMaskManager.Dispose();
 
@@ -155,7 +162,7 @@ namespace Hsinpa
             currentStage = StaticEnum.SimulationStage.Stage_6;
 
             cameraMaskManager.Enter();
-            cameraMaskManager.SetText("", StaticString.SCENE6NOTICE);
+            cameraMaskManager.SetText("", Loc.Get("SCENE6NOTICE"));
 
             captionCtrl.Play(LocalizationManager.WorkSheet.Cut6);
 

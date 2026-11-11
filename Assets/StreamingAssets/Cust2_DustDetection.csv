@@ -1,4 +1,4 @@
 key,zhcht,en
-Cust2_DustDetection_Caption_0,[system]請仔細觀察四周，找出可能產生粉塵的位置,
-Cust2_DustDetection_Caption_1,[system]研磨點、工作台、地面堆積處都有可能,
-Cust2_DustDetection_Caption_2,[system]找到後用手把點選它,
+Cust2_DustDetection_Caption_0,[system]請仔細觀察四周，找出可能產生粉塵的位置,[system]Look carefully around you for possible dust sources.
+Cust2_DustDetection_Caption_1,[system]研磨點、工作台、地面堆積處都有可能,"[system]Possible sources: the grinding point, workbench, and dust buildup on the floor."
+Cust2_DustDetection_Caption_2,[system]找到後用手把點選它,[system]Select each source with the controller when you find it.

@@ -122,6 +122,7 @@ namespace Hsinpa
 
                     string audioID = (isCorrect) ? Audio.UI_CLICK : Audio.WRONG_CHOICE;
                     UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, audioID);
+                    SimpleEventSystem.Send(StaticEvent.TaskStatusEvent, TaskStatus.Dusk, isCorrect);
                 }                
             }
         }

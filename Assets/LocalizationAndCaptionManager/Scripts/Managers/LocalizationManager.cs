@@ -26,7 +26,7 @@ public class LocalizationManager : MonoBehaviour
 
     private string currentLanguageCodeNumPlayerprefsKey = "currentLanguageCodeNum";
 
-    [ReadOnly] public List<string> languageCodes = new List<string>();
+    [ReadOnly] public List<string> languageCodes;
     [ReadOnly] public int CurrentLanguageCodeNum;
     [ReadOnly] public List<LocalizationUpdater> LocalizationUpdaters;
 

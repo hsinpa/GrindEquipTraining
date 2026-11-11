@@ -62,7 +62,7 @@ namespace Hsinpa
             mouthMaskFlag = false;
 
             uiCavnas.SetVisible(true);
-            messaegeHolder.SetContent(StaticString.SCENE4NOTICE, StaticString.SCENE4TITLE, MessageHolder.IconState.Info);
+            messaegeHolder.SetContent(Loc.Get("SCENE4NOTICE"), Loc.Get("SCENE4TITLE"), MessageHolder.IconState.Info);
             this._captionCtrl.Play(LocalizationManager.WorkSheet.Cut4_Begin, () =>
             {
                 uiCavnas.SetVisible(false);
@@ -99,10 +99,10 @@ namespace Hsinpa
 
                     if (collider.name == "dustMask")
                     {
-                        messaegeHolder.SetContent(StaticString.NORMAL_MASK_NOTICE, StaticString.NORMAL_MASK_TITLE, MessageHolder.IconState.Error);
+                        messaegeHolder.SetContent(Loc.Get("NORMAL_MASK_NOTICE"), Loc.Get("NORMAL_MASK_TITLE"), MessageHolder.IconState.Error);
                     } else if (collider.name == "gasMask")
                     {
-                        messaegeHolder.SetContent(StaticString.HALF_MASK_NOTICE, StaticString.HALF_MASK_TITLE, MessageHolder.IconState.Error);                    
+                        messaegeHolder.SetContent(Loc.Get("HALF_MASK_NOTICE"),Loc.Get("HALF_MASK_TITLE"), MessageHolder.IconState.Error);                    
                     }
 
                     this._captionCtrl.Play(LocalizationManager.WorkSheet.Cut4_Mistake, () => { uiCavnas.SetVisible(false);});
@@ -110,7 +110,7 @@ namespace Hsinpa
                 } else if (collider.gameObject.activeSelf && collider.isCorrectAnswer)
                 {
                     uiCavnas.SetVisible(true);
-                    messaegeHolder.SetContent(StaticString.N95_NOTICE, StaticString.N95_TITLE, MessageHolder.IconState.Info);
+                    messaegeHolder.SetContent(Loc.Get("N95_NOTICE"), Loc.Get("N95_TITLE"), MessageHolder.IconState.Info);
                     this._captionCtrl.Play(LocalizationManager.WorkSheet.Cut4_Complete,  () => { uiCavnas.SetVisible(false);});
                 }
             } else
@@ -124,11 +124,11 @@ namespace Hsinpa
         {
             if (isSelected)
             {
-                messaegeHolder.SetContent(StaticString.SAFE_GLASS_MASK_NOTICE, StaticString.SAFE_GLASS_MASK_TITLE, MessageHolder.IconState.Victory);
+                messaegeHolder.SetContent(Loc.Get("SAFE_GLASS_MASK_NOTICE"), Loc.Get("SAFE_GLASS_MASK_TITLE"), MessageHolder.IconState.Victory);
                 UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.COMPLETE);                
             } else
             {
-                messaegeHolder.SetContent(StaticString.SCENE4NOTICE, StaticString.SCENE4TITLE, MessageHolder.IconState.Info);
+                messaegeHolder.SetContent(Loc.Get("SCENE4NOTICE"), Loc.Get("SCENE4TITLE"), MessageHolder.IconState.Info);
             }
         }
 
@@ -137,7 +137,7 @@ namespace Hsinpa
             if (collider.isCorrectAnswer)
             {
                 completeCallback?.Invoke();
-            }            
+            }       
         }
 
         private void OnScene4HoldOnTriggerEvent(Scene4Collider collider)
@@ -152,7 +152,7 @@ namespace Hsinpa
                 if (eyeMaskFlag && mouthMaskFlag)
                 {
                     uiCavnas.SetVisible(true);
-                    messaegeHolder.SetContent(StaticString.SCENE4COMPLETE, StaticString.SCENE4TITLE, MessageHolder.IconState.Victory);
+                    messaegeHolder.SetContent(Loc.Get("SCENE4COMPLETE"), Loc.Get("SCENE4TITLE"), MessageHolder.IconState.Victory);
                     completeCallback?.Invoke();
                 }
 
@@ -163,16 +163,18 @@ namespace Hsinpa
             {
                 collider.gameObject.SetActive(false); // Hide the mask from user  
                 mouthMaskFlag = true;
+                SimpleEventSystem.Send(StaticEvent.TaskStatusEvent, TaskStatus.Mask, true);     
 
                 if (eyeMaskFlag && mouthMaskFlag)
                 {
                     uiCavnas.SetVisible(true);
-                    messaegeHolder.SetContent(StaticString.SCENE4COMPLETE, StaticString.SCENE4TITLE, MessageHolder.IconState.Victory);
+                    messaegeHolder.SetContent(Loc.Get("SCENE4COMPLETE"), Loc.Get("SCENE4TITLE"), MessageHolder.IconState.Victory);
                     completeCallback?.Invoke();
                 } 
             } else
             {
                 collider.Reset();
+                SimpleEventSystem.Send(StaticEvent.TaskStatusEvent, TaskStatus.Mask, false);     
             }
         }
 

@@ -22,7 +22,13 @@ namespace Hsinpa
         private GameObject scene7Reminder;
 
         [SerializeField]
-        private GameObject scene8Reminder;
+        private LastSceneUI scene8Reminder;
+
+        [SerializeField]
+        private Transform grinderMachine1;
+
+        [SerializeField]
+        private Transform grinderMachine2;
 
         [Header("Scene 5")]
         [SerializeField]
@@ -46,6 +52,7 @@ namespace Hsinpa
         [Header("Scene 7")]
         [SerializeField]
         private SimpleSelectCollider scene7AirMachineCollider;
+
         [SerializeField]
         private Animator scene7GrinderButtonUI;
 
@@ -53,13 +60,13 @@ namespace Hsinpa
         private Animator scene7MaskButtonUI;
 
         [SerializeField]
-        private Animator scene7HeadAnimator;
+        private SimpleSelectCollider scene7CorrectHeadCollider;
 
         [SerializeField]
-        private SimpleSelectCollider scene7NoseCollider;
+        private SimpleSelectCollider scene7Wrong1HeadCollider;
 
         [SerializeField]
-        private SimpleSelectCollider scene7MouthCollider;
+        private SimpleSelectCollider scene7Wrong2HeadCollider;
 
         [Header("Audio")]
         [SerializeField]
@@ -87,6 +94,7 @@ namespace Hsinpa
         public void SetUp(CaptionCameraCtrl captionCtrl)
         {
             _captionCtrl = captionCtrl;
+            scene8Reminder.SetUp();
         }
 
         void Start()
@@ -98,8 +106,10 @@ namespace Hsinpa
                 c.isSelectedCallback += OnColliderSelected;
             }
 
-            scene7NoseCollider.isSelectedCallback += OnNoseSelect;
-            scene7MouthCollider.isSelectedCallback += OnMouthSelect;
+            scene7CorrectHeadCollider.isSelectedCallback += OnScene7CorrectHeadSelect;
+            scene7Wrong1HeadCollider.isSelectedCallback += OnScene7WrongHeadSelect;
+            scene7Wrong2HeadCollider.isSelectedCallback += OnScene7WrongHeadSelect;
+
             scene7AirMachineCollider.isSelectedCallback += OnAirMachineBtnSelect;
 
             scene5ColliderGrab.SetUp(grindToolTextCanvas);
@@ -112,7 +122,7 @@ namespace Hsinpa
 
             if (isSelected)
             {
-                messageHolder.SetContent(StaticString.SCENE2COMPLETENOTICE, StaticString.SCENE2COMPLETETITLE, MessageHolder.IconState.Victory);
+                messageHolder.SetContent(Loc.Get("SCENE2COMPLETENOTICE"), Loc.Get("SCENE2COMPLETETITLE"), MessageHolder.IconState.Victory);
 
                 _captionCtrl.Play(LocalizationManager.WorkSheet.Cut2_Complete, () =>
                 {
@@ -121,9 +131,15 @@ namespace Hsinpa
             }
         }
 
+        public void ShowGrinderMachine(bool is_show)
+        {
+            grinderMachine1.gameObject.SetActive(is_show);
+            grinderMachine2.gameObject.SetActive(is_show);
+        }
+
         public void Scene1Start()
         {
-            messageHolder.SetContent(StaticString.SCENE1NOTICE, StaticString.SCENE1TITLE, MessageHolder.IconState.Info);
+            messageHolder.SetContent(Loc.Get("SCENE1NOTICE"), Loc.Get("SCENE1TITLE"), MessageHolder.IconState.Info);
 
             foreach (Scene2Collider c in interactableColliders)
             {
@@ -135,7 +151,7 @@ namespace Hsinpa
         {   
             Reset();
             isScene2Start = true;
-            messageHolder.SetContent(StaticString.SCENE2NOTICE, StaticString.SCENE2NOTICETITLE, MessageHolder.IconState.Info);
+            messageHolder.SetContent(Loc.Get("SCENE2NOTICE"), Loc.Get("SCENE2NOTICETITLE"), MessageHolder.IconState.Info);
             foreach (Scene2Collider c in interactableColliders)
             {
                 c.gameObject.SetActive(true);
@@ -150,7 +166,7 @@ namespace Hsinpa
             scene5ColliderGrab.gameObject.SetActive(true);
             grinderMachineAudio.Play();
 
-            grindToolText.text = StaticString.GRIND_TOOL_NOTICE;
+            grindToolText.text = Loc.Get("GRIND_TOOL_NOTICE");
 
             scene5ColliderGrab.StartSimulation(true, (x) =>
             {
@@ -185,9 +201,10 @@ namespace Hsinpa
 
             scene7GrinderButtonUI.gameObject.SetActive(true);
             scene7GrinderButtonUI.SetBool("flash", true);
-            scene7HeadAnimator.gameObject.SetActive(true);
-            scene7NoseCollider.Interaction(false);
-            scene7MouthCollider.Interaction(false);
+
+            scene7CorrectHeadCollider.GetParentObject()?.gameObject.SetActive(true);
+            scene7Wrong1HeadCollider.GetParentObject()?.gameObject.SetActive(true);
+            scene7Wrong2HeadCollider.GetParentObject()?.gameObject.SetActive(true);
 
             scene7AirMachineCollider.Interaction(true);
 
@@ -199,7 +216,7 @@ namespace Hsinpa
             messageHolder.gameObject.SetActive(true);
             scene7Reminder.gameObject.SetActive(false);
 
-            messageHolder.SetContent(StaticString.SCENE7NOSENOTICE, StaticString.SCENE7NOSETITLE, MessageHolder.IconState.Info);
+            messageHolder.SetContent(Loc.Get("SCENE7NOSENOTICE"), Loc.Get("SCENE7NOSETITLE"), MessageHolder.IconState.Info);
 
             _captionCtrl.Play(LocalizationManager.WorkSheet.Cut8_Air);
         }
@@ -208,7 +225,7 @@ namespace Hsinpa
         {
             Reset();
             scene5ColliderGrab.gameObject.SetActive(true);
-            grindToolText.text = StaticString.GRIND_TOOL_RENOTICE;
+            grindToolText.text = Loc.Get("GRIND_TOOL_RENOTICE");
 
             scene5ColliderGrab.StartSimulation(true, (x) =>
             {
@@ -263,6 +280,8 @@ namespace Hsinpa
             messageHolder.gameObject.SetActive(false);
             scene7Reminder.gameObject.SetActive(false);
             scene8Reminder.gameObject.SetActive(true);
+
+            scene8Reminder.ShowResult();
         }
 
         private async void OnAirMachineBtnSelect()
@@ -273,42 +292,35 @@ namespace Hsinpa
 
             scene7MaskButtonUI.gameObject.SetActive(true);
             this.scene7IsAirMachineClickFlag = true;
-            scene7NoseCollider.Interaction(true);   
             scene7GrinderButtonUI.gameObject.SetActive(false);
+
+            scene7CorrectHeadCollider.Interaction(true);
+            scene7Wrong1HeadCollider.Interaction(true);
+            scene7Wrong2HeadCollider.Interaction(true);
         }
 
-        private void OnNoseSelect()
+        private async void OnScene7CorrectHeadSelect()
         {
             if (this.scene7IsAirMachineClickFlag)
             {
-                this.scene7IsNoseClickFlag = true;
-                scene7HeadAnimator.SetTrigger("Nose");
-                messageHolder.SetContent(StaticString.SCENE7MOUTHNOTICE, StaticString.SCENE7MOUTHTITLE, MessageHolder.IconState.Info);
-                scene7NoseCollider.Interaction(false);
-                scene7MouthCollider.Interaction(true);
                 UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.UI_CLICK); 
                 scene7MaskButtonUI.gameObject.SetActive(false);
-
-                _ = UtilityFunc.DoDelayWork(4, () =>
-                {
-                    OnMouthSelect();
-                });        
-            }
-        }
-
-        private void OnMouthSelect()
-        {
-            if (this.scene7IsAirMachineClickFlag && this.scene7IsNoseClickFlag)
-            {
-                scene7NoseCollider.Interaction(false);
-                scene7NoseCollider.Interaction(false);
-                scene7HeadAnimator.SetTrigger("Mouth");
-                UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.UI_CLICK);            
+                SimpleEventSystem.Send(StaticEvent.TaskStatusEvent, TaskStatus.Step, true);     
+                messageHolder.SetContent(Loc.Get("SCENE7MOUTHNOTICE"),Loc.Get("SCENE7MOUTHTITLE"), MessageHolder.IconState.Info);
 
                 _captionCtrl.Play(LocalizationManager.WorkSheet.Cut8_MaskComplete, () =>
                 {
                     this.completeScene7Callback?.Invoke(); 
                 });
+            }
+        }
+
+        private async void OnScene7WrongHeadSelect()
+        {
+            if (this.scene7IsAirMachineClickFlag)
+            {
+                SimpleEventSystem.Send(StaticEvent.TaskStatusEvent, TaskStatus.Step, false);     
+                UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.WRONG_CHOICE); 
             }
         }
 
@@ -328,15 +340,19 @@ namespace Hsinpa
             }
 
             scene5ColliderGrab.Reset();
-            scene7HeadAnimator.gameObject.SetActive(false);
             scene7GrinderButtonUI.gameObject.SetActive(false);
             scene7MaskButtonUI.gameObject.SetActive(false);
             scene7GrinderButtonUI.SetBool("flash", false);
             scene7AirMachineCollider.Interaction(false);
+
             grinderMachineAudio.Stop();
             // airMachineAudio.Stop();
             grinderingAudio.Stop();
             grindToolTextCanvas.gameObject.SetActive(false);
+
+            scene7CorrectHeadCollider.GetParentObject()?.gameObject.SetActive(false);
+            scene7Wrong1HeadCollider.GetParentObject()?.gameObject.SetActive(false);
+            scene7Wrong2HeadCollider.GetParentObject()?.gameObject.SetActive(false);
         }
 
         public void Enter()

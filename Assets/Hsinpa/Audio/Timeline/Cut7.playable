@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b22792c3b570444eb18cb78c2af3a74, type: 3}
-  m_Name: Audio Track
+  m_Name: VoiceTrack_en
   m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.AudioTrack
   m_Version: 3
   m_AnimClip: {fileID: 0}
@@ -137,10 +137,10 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 9.801396702649072
+    m_Start: 0.5166666666666667
     m_ClipIn: 0
-    m_Asset: {fileID: -2084602285230287562}
-    m_Duration: 7.081936630684261
+    m_Asset: {fileID: -783923584878983754}
+    m_Duration: 6.096
     m_TimeScale: 1
     m_ParentTrack: {fileID: -2155183301224144512}
     m_EaseInDuration: 0
@@ -204,14 +204,16 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: "\u5F85\u5B8C\u6210\u9805\u76EE\u5C40\u90E8\u6392\u6C23\u78BA"
+    m_DisplayName: Cut7_Caption_0
   m_Markers:
-    m_Objects: []
+    m_Objects:
+    - {fileID: -1888137962579527488}
+    - {fileID: 2069209179942797693}
   m_TrackProperties:
     volume: 1
     stereoPan: 0
     spatialBlend: 0
---- !u!114 &-2084602285230287562
+--- !u!114 &-1888137962579527488
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,14 +222,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f10dd60657c6004587f237a7e90f8e4, type: 3}
-  m_Name: AudioPlayableAsset
-  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.AudioPlayableAsset
-  m_Clip: {fileID: 8300000, guid: ec139ba460928514698901f3a20a9813, type: 3}
-  m_Loop: 0
-  m_bufferingTime: 0.1
-  m_ClipProperties:
-    volume: 1
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalEmitter
+  m_Time: 0.5166666666666667
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: c181d87d9653c4c42bc87501d488118f, type: 2}
 --- !u!114 &-1611552775652992090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -244,6 +245,23 @@ MonoBehaviour:
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: c181d87d9653c4c42bc87501d488118f, type: 2}
+--- !u!114 &-783923584878983754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f10dd60657c6004587f237a7e90f8e4, type: 3}
+  m_Name: AudioPlayableAsset
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.AudioPlayableAsset
+  m_Clip: {fileID: 8300000, guid: 1a5a0380f1ce8f344be40edd0d2908c0, type: 3}
+  m_Loop: 0
+  m_bufferingTime: 0.1
+  m_ClipProperties:
+    volume: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +284,22 @@ MonoBehaviour:
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: 0}
+--- !u!114 &2069209179942797693
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalEmitter
+  m_Time: 6.612666666666667
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 0d0693970ef0fc44aa230cab4943a6b9, type: 2}
 --- !u!114 &6645579911163287643
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 
 public class StaticString
 {
@@ -29,7 +30,7 @@ public class StaticString
     public const string SCENE7NOSENOTICE= "完成正壓／負壓密合檢點";
 
     public const string SCENE7MOUTHTITLE = "最後一道防線";
-    public const string SCENE7MOUTHNOTICE = "防護具是最後防線，研磨前務必確認局部排氣有效";
+    public const string SCENE7MOUTHNOTICE = "面罩防護具是最後防線，研磨前務必以正確姿勢配戴";
 
     public const string N95_TITLE = "N95";
     public const string N95_NOTICE = "可過濾非油性粉塵及細微粒子，適合一般金屬乾式研磨";
@@ -46,11 +47,21 @@ public class StaticString
     public const string GRIND_TOOL_NOTICE = "請拿取工具進行研磨";
     public const string GRIND_TOOL_RENOTICE = "請再次拿取工具進行研磨";
     public const string MASK_CHECK_NOTICE = "點擊確認口罩密合點";
+
+
+    public static Dictionary<string, string> GlobalStrDict = new Dictionary<string, string>()   
+    {
+        {"0_system", "系統"},
+        {"1_system", "System"},
+        {"0_manager", "主管"},
+        {"1_manager", "Manager"},
+    };
 }
 
 public class StaticEvent
 {
     public const string TriggerEvent = "Trigger_Event";
+    public const string TaskStatusEvent = "Task_Status_Event";
 }
 
 public class GestureState
@@ -75,3 +86,9 @@ public class Audio
     public const string WEAR = "WEAR";
     public const string COMPLETE = "COMPLETE";
 }
+
+public enum TaskStatus
+{
+    Dusk, Mask, Step
+}
+
