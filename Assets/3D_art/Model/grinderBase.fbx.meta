@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: dust_MT
+    second: {fileID: 2100000, guid: 2e5e3161c803f9b40a688106927b057e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: grinderBase_MT
     second: {fileID: 2100000, guid: 5873234018cf4cd4e8928c93c3f4d02d, type: 2}
   - first:

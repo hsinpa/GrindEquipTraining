@@ -2,16 +2,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 namespace Hsinpa
 {
     public class LanguageSelector: MonoBehaviour
     {
-        const string sceneToLoad = "Scenes/防護罩";
-
-        [SerializeField]
-        private RectTransform btn_group;
-
         [SerializeField]
         private Button chinese_btn;
 
@@ -19,32 +15,44 @@ namespace Hsinpa
         private Button en_btn;
 
         [SerializeField]
-        private TextMeshProUGUI loading_text;
+        private Button id_btn;
+
+        [SerializeField]
+        private Button th_btn;
+
+        [SerializeField]
+        private Button vi_btn;
+
+        [SerializeField]
+        private Button confirm_btn;
+
+        public Action onConfirmEvent;
 
         private void Start()
         {
             chinese_btn.onClick.AddListener(() => {OnLangBtnClick("zhcht"); });
             en_btn.onClick.AddListener(() => {OnLangBtnClick("en"); });
+            id_btn.onClick.AddListener(() => {OnLangBtnClick("id"); });
+            th_btn.onClick.AddListener(() => {OnLangBtnClick("th"); });
+            vi_btn.onClick.AddListener(() => {OnLangBtnClick("vi"); });
+
+            confirm_btn.onClick.AddListener(OnConfirm);
+        }
+
+        public void Show(bool is_show)
+        {
+            gameObject.SetActive(is_show);
         }
 
         private void OnLangBtnClick(string langcode)
         {
-            btn_group.gameObject.SetActive(false);
-            loading_text.gameObject.SetActive(true);
             Loc.SetLanguage(langcode);
+        }
 
-            _ = Utility.UtilityFunc.DoDelayWork(1, () =>
-            {
-                var op = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Single);
-
-                op.completed += (AsyncOperation obj) =>
-                {
-                    Scene loadedScene = SceneManager.GetSceneByPath(sceneToLoad);
-                    Debug.Log($"{sceneToLoad} finished loading (build index: {loadedScene.buildIndex}).");
-                    Debug.Log($"It has {loadedScene.rootCount} root(s).");
-                    Debug.Log($"There are now {SceneManager.loadedSceneCount} Scenes open.");
-                }; 
-            });
+        private void OnConfirm()
+        {
+            onConfirmEvent?.Invoke();
+            Show(false);
         }
     }
 }

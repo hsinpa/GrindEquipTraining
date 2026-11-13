@@ -1,3 +1,3 @@
-key,zhcht,en
-Cut8_MaskComplete_Caption_0,[system]密合度檢點通過，防護具佩戴正確,[system]Seal check passed. Your respirator is worn correctly.
-Cut8_MaskComplete_Caption_1,[system]可以開始進行研磨作業,[system]You may now start grinding.
+key,zhcht,en,id,th,vi
+Cut8_MaskComplete_Caption_0,[system]密合度檢點通過，防護具佩戴正確,[system]Seal check passed. Your respirator is worn correctly.,[system]Lulus cek kerapatan. Respirator terpasang dengan benar.,[system]ผ่านการตรวจความแนบสนิท สวมหน้ากากกรองฝุ่นถูกต้องแล้ว,[system]Đạt kiểm tra độ kín khít. Mặt nạ lọc bụi được đeo đúng cách.
+Cut8_MaskComplete_Caption_1,[system]現在可以開始進行研磨作業,[system]You may now start grinding.,[system]Sekarang boleh mulai menggerinda.,[system]ตอนนี้เริ่มงานเจียรได้แล้ว,[system]Giờ có thể bắt đầu mài.

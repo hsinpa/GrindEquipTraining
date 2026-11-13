@@ -9,6 +9,9 @@ namespace Hsinpa
     public class TotalSceneManager : MonoBehaviour
     {
         [SerializeField]
+        private LanguageSelector languageSelector;
+
+        [SerializeField]
         private CameraMaskManager cameraMaskManager;
 
         [SerializeField]
@@ -73,8 +76,8 @@ namespace Hsinpa
             teleportManager.grinderTeleportAnchor.SetTarget(cameraTransform);
             maskManager.Setup(cameraTransform, captionCtrl);
 
-            Debug.Log(Loc.CurrentLanguage);
-            RunStage0();
+            languageSelector.Show(true);
+            languageSelector.onConfirmEvent += RunStage0;
         }
 
         void RunStage0()
@@ -91,7 +94,15 @@ namespace Hsinpa
 
         void RunStage1()
         {
-            localizationManager.SetLanguage((Loc.CurrentLanguage == "zhcht") ? 0 : 1); 
+            languageSelector.Show(false);
+            int langIndex = localizationManager.languageCodes.IndexOf(Loc.CurrentLanguage);
+            if (langIndex < 0)
+            {
+                Debug.LogWarning($"[TotalSceneManager] Language '{Loc.CurrentLanguage}' not in CSV columns ({string.Join(", ", localizationManager.languageCodes)}), fallback to en.");
+                langIndex = localizationManager.languageCodes.IndexOf("en");
+            }
+            Debug.Log($"[TotalSceneManager] Caption language: {Loc.CurrentLanguage} -> index {langIndex}");
+            localizationManager.SetLanguage(langIndex);
             scene2Manager.ShowGrinderMachine(true);
             currentStage = StaticEnum.SimulationStage.Stage_1;
             cameraMaskManager.Dispose();

@@ -1,4 +1,4 @@
-key,zhcht,en
-Cut4_Begin_Caption_0,[system]請依照這次研磨作業的粉塵風險,[system]Consider the dust hazard for this grinding task.
-Cut4_Begin_Caption_1,[system]從架上選擇適合的呼吸防護具,[system]Choose a suitable respirator from the shelf.
-Cut4_Begin_Caption_2,[system]並配戴安全防護眼罩,[system]Put on safety goggles.
+key,zhcht,en,id,th,vi
+Cut4_Begin_Caption_0,[system]請依照這次研磨作業的粉塵風險,[system]Consider the dust hazard for this grinding task.,[system]Pertimbangkan risiko debu dari pekerjaan gerinda ini.,[system]พิจารณาความเสี่ยงจากฝุ่นในงานเจียรครั้งนี้,[system]Xem xét nguy cơ do bụi trong công việc mài này.
+Cut4_Begin_Caption_1,[system]從架上選擇適合的呼吸防護具,[system]Choose a suitable respirator from the shelf.,[system]Pilih respirator yang sesuai dari rak.,[system]เลือกหน้ากากกรองฝุ่นที่เหมาะสมจากชั้นวาง,[system]Chọn mặt nạ lọc bụi phù hợp trên kệ.
+Cut4_Begin_Caption_2,[system]並配戴安全防護眼罩,[system]Put on safety goggles.,[system]Kenakan kacamata pelindung.,[system]สวมแว่นครอบตานิรภัย,[system]Đeo kính bảo hộ kín mắt.

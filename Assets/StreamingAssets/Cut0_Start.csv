@@ -1,4 +1,4 @@
-key,zhcht,en
-Cut0_Start_Caption_0,[system]體驗過程需佩戴 VR 眼鏡，如有不適(噁心嘔吐等)請立即告知工作人員,"[system]Wear a VR headset throughout. If unwell (e.g., nausea or vomiting), tell staff immediately."
-Cut0_Start_Caption_1,[system]請學員評估自身狀況，若有以下生理狀況不得體驗,[system]Assess your health. Do not participate if any of these conditions apply.
-Cut0_Start_Caption_2,[system]懷孕，心臟病，高血壓，身體不適,"[system]Pregnancy, heart disease, high blood pressure, or feeling unwell."
+key,zhcht,en,id,th,vi
+Cut0_Start_Caption_0,[system]體驗過程需佩戴 VR 眼鏡，如有不適(噁心嘔吐等)請立即告知工作人員,"[system]Wear a VR headset throughout. If unwell (e.g., nausea or vomiting), tell staff immediately.","[system]Pakai headset VR selama simulasi. Jika tidak enak badan (misalnya mual atau muntah), segera lapor petugas.",[system]สวมแว่น VR ตลอดการจำลอง หากไม่สบาย เช่น คลื่นไส้หรืออาเจียน ให้แจ้งเจ้าหน้าที่ทันที,"[system]Đeo kính VR suốt buổi trải nghiệm. Nếu khó chịu (như buồn nôn, nôn ói), báo ngay cho nhân viên."
+Cut0_Start_Caption_1,[system]請學員評估自身狀況，若有以下生理狀況不得體驗,[system]Assess your health. Do not participate if any of these conditions apply.,[system]Periksa kondisi kesehatan Anda. Jangan ikut simulasi jika mengalami kondisi berikut.,[system]ประเมินสุขภาพตนเอง หากมีภาวะต่อไปนี้ ห้ามเข้าร่วมการจำลอง,[system]Tự đánh giá sức khỏe. Không tham gia nếu có một trong các tình trạng sau.
+Cut0_Start_Caption_2,[system]懷孕，心臟病，高血壓，身體不適,"[system]Pregnancy, heart disease, high blood pressure, or feeling unwell.","[system]Hamil, sakit jantung, tekanan darah tinggi, atau sedang tidak enak badan.",[system]ตั้งครรภ์ เป็นโรคหัวใจ ความดันโลหิตสูง หรือไม่สบาย,"[system]Mang thai, bệnh tim, cao huyết áp hoặc đang không khỏe."

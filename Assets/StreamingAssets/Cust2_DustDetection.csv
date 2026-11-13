@@ -1,4 +1,4 @@
-key,zhcht,en
-Cust2_DustDetection_Caption_0,[system]請仔細觀察四周，找出可能產生粉塵的位置,[system]Look carefully around you for possible dust sources.
-Cust2_DustDetection_Caption_1,[system]研磨點、工作台、地面堆積處都有可能,"[system]Possible sources: the grinding point, workbench, and dust buildup on the floor."
-Cust2_DustDetection_Caption_2,[system]找到後用手把點選它,[system]Select each source with the controller when you find it.
+key,zhcht,en,id,th,vi
+Cust2_DustDetection_Caption_0,[system]請仔細觀察四周，找出可能產生粉塵的位置,[system]Look carefully around you for possible dust sources.,[system]Amati sekitar dengan saksama untuk mencari sumber debu.,[system]สังเกตรอบตัวให้ดี แล้วหาจุดที่อาจก่อให้เกิดฝุ่น,[system]Quan sát kỹ xung quanh để tìm nơi có thể phát sinh bụi.
+Cust2_DustDetection_Caption_1,[system]研磨點、工作台、地面堆積處都有可能,"[system]Possible sources: the grinding point, workbench, and dust buildup on the floor.","[system]Sumbernya bisa di titik gerinda, meja kerja, atau tumpukan debu di lantai.",[system]แหล่งฝุ่นอาจอยู่ที่จุดเจียร โต๊ะทำงาน หรือฝุ่นที่สะสมบนพื้น,"[system]Nguồn bụi có thể ở điểm mài, bàn làm việc và nơi bụi tích tụ trên sàn."
+Cust2_DustDetection_Caption_2,[system]找到後用手把點選它,[system]Select each source with the controller when you find it.,"[system]Setelah ditemukan, pilih sumber debu dengan kontroler.",[system]เมื่อพบแล้ว ใช้คอนโทรลเลอร์เลือกจุดนั้น,"[system]Khi tìm thấy, dùng tay cầm điều khiển để chọn vị trí đó."

@@ -1,3 +1,3 @@
-key,zhcht,en
-Cut8_Air_Caption_0,[manager]個人防護具是最後一道防線，研磨前仍需確認局部排氣是否有效,"[manager]PPE is the last line of defense. Before grinding, check that local exhaust works effectively."
-Cut8_Air_Caption_1,[manager]請確認抽氣罩是否靠近研磨點、風管是否暢通，並確認抽風已經啟動,"[manager]Check that the hood is near the grinding point, the duct is clear, and local exhaust is on."
+key,zhcht,en,id,th,vi
+Cut8_Air_Caption_0,[manager]首先需確認局部排氣是否有效,"[manager]First, check whether the local exhaust works effectively.","[manager]Pertama, pastikan sistem pengisap lokal bekerja efektif.",[manager]ขั้นแรก ตรวจว่าระบบดูดอากาศเฉพาะที่ทำงานได้ดีหรือไม่,"[manager]Trước tiên, kiểm tra xem hệ thống hút cục bộ có hoạt động hiệu quả không."
+Cut8_Air_Caption_1,[manager]請確認抽氣罩是否靠近研磨點、風管是否暢通，並確認抽風已經啟動,"[manager]Check that the hood is near the grinding point, the duct is clear, and local exhaust is on.","[manager]Pastikan tudung dekat titik gerinda, saluran tidak tersumbat, dan sistem pengisap lokal menyala.",[manager]ตรวจว่าฮูดอยู่ใกล้จุดเจียร ท่อลมไม่อุดตัน และเปิดระบบดูดอากาศเฉพาะที่แล้ว,"[manager]Kiểm tra chụp hút gần điểm mài, ống thông thoáng và hệ thống hút cục bộ đã bật."

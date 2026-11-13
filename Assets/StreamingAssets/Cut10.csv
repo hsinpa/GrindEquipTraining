@@ -1,4 +1,4 @@
-key,zhcht,en
-Cut10_Caption_0,[system]恭喜您完成呼吸防護具模擬訓練,[system]Congratulations! You've completed the respirator simulation training.
-Cut10_Caption_1,[system]記住、防護具不是戴上就好,"[system]Remember, just putting on PPE is not enough."
-Cut10_Caption_2,[system]選對、戴正確、勤檢點，才能真正守護呼吸安全,"[system]Choose correctly, wear it properly, and check often to protect your breathing."
+key,zhcht,en,id,th,vi
+Cut10_Caption_0,[system]恭喜您完成呼吸防護具模擬訓練,[system]Congratulations! You've completed the respirator simulation training.,[system]Selamat! Anda telah menyelesaikan pelatihan simulasi respirator.,[system]ยินดีด้วย! คุณฝึกจำลองการใช้หน้ากากกรองฝุ่นครบแล้ว,[system]Chúc mừng! Bạn đã hoàn thành huấn luyện mô phỏng dùng mặt nạ lọc bụi.
+Cut10_Caption_1,[system]記住、防護具不是戴上就好,"[system]Remember, just putting on PPE is not enough.","[system]Ingat, memakai APD saja tidak cukup.",[system]จำไว้ว่า แค่สวมอุปกรณ์ป้องกันยังไม่พอ,[system]Nhớ rằng chỉ đeo trang bị bảo hộ thôi chưa đủ.
+Cut10_Caption_2,[system]選對、戴正確、勤檢點，才能真正守護呼吸安全,"[system]Choose correctly, wear it properly, and check often to protect your breathing.","[system]Pilih yang tepat, pakai dengan benar, dan rutin periksa untuk melindungi pernapasan.",[system]เลือกให้เหมาะ สวมให้ถูก ตรวจบ่อย ๆ เพื่อปกป้องทางเดินหายใจ,"[system]Chọn đúng, đeo đúng, kiểm tra thường xuyên để bảo vệ hô hấp."

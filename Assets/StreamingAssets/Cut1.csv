@@ -1,3 +1,3 @@
-key,zhcht,en
-Cut1_Caption_0,[manager]今天要把手邊的工件毛邊都去除，時間比較趕，但開始前還是要先確認防護具。,"[manager]We must deburr all these parts today. Time is tight, but check personal protective equipment (PPE) before starting."
-Cut1_Caption_1,[manager]今天動作要快一點，但該做的檢查不能省，知道嗎？,"[manager]Work a bit faster today, but don't skip any checks. Understood?"
+key,zhcht,en,id,th,vi
+Cut1_Caption_0,[manager]今天要把手邊的工件毛邊都去除，時間比較趕，但開始前還是要先確認防護具。,"[manager]We must deburr all these parts today. Time is tight, but check personal protective equipment (PPE) before starting.","[manager]Hari ini kita harus menghilangkan semua burr pada benda kerja ini. Waktu mepet, tapi periksa alat pelindung diri (APD) dulu.",[manager]วันนี้ต้องลบครีบชิ้นงานทั้งหมด เวลาจำกัด แต่ต้องตรวจอุปกรณ์ป้องกันส่วนบุคคลก่อนเริ่มงาน,"[manager]Hôm nay phải loại bỏ hết ba via trên các chi tiết này. Thời gian gấp, nhưng phải kiểm tra trang bị bảo hộ trước."
+Cut1_Caption_1,[manager]今天動作要快一點，但該做的檢查不能省，知道嗎？,"[manager]Work a bit faster today, but don't skip any checks. Understood?","[manager]Hari ini kerja lebih cepat, tapi jangan lewatkan pemeriksaan apa pun. Mengerti?",[manager]วันนี้ทำงานให้เร็วขึ้นหน่อย แต่ห้ามข้ามการตรวจสอบ เข้าใจไหม?,"[manager]Hôm nay làm nhanh hơn chút, nhưng không được bỏ bước kiểm tra nào. Hiểu chưa?"

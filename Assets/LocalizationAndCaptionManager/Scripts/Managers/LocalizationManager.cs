@@ -17,8 +17,8 @@ public class LocalizationManager : MonoBehaviour
 {
     //Setting--
     private string baseUrl = "https://docs.google.com/spreadsheets/d/1Y-MfAkIWgXuM8ONWooW6rIMc3caOnuEY3WM6r9cBB-M/export?format=csv&gid=";
-    public enum WorkSheet {Version, Cut0_Start, Cut1, Cust2_DustDetection, Cut2_Complete, Cut3, Cut4_Begin, Cut4_Mistake, Cut4_Complete, Cut5, Cut6, Cut7, Cut8_Air, Cut8_AirComplete, Cut8_Mask, Cut8_MaskComplete, Cut10 };
-    private int[] gid = {2089288298, 794692782, 0, 1214422446, 810627338, 1305103595, 496206170, 373358810, 73108086, 1816233372, 174195983, 407541686, 1664310869, 1161585711, 1672976812, 1175951804, 1109326520  };
+    public enum WorkSheet {Version, Cut0_Start, Cut1, Cust2_DustDetection, Cut2_Complete, Cut3, Cut4_Begin, Cut4_Mistake, Cut4_Complete, Cut5, Cut6, Cut7, Cut8_Air, Cut8_AirComplete, Cut8_Mask_Step_1,Cut8_Mask_Step_2, Cut8_Mask_Step_3, Cut8_MaskComplete, Cut10 };
+    private int[] gid = {2089288298, 794692782, 0, 1214422446, 810627338, 1305103595, 496206170, 373358810, 73108086, 1816233372, 174195983, 407541686, 1664310869, 1161585711, 1672976812, 924571391, 356904991, 1175951804, 1109326520  };
     //--
 
     private Dictionary<WorkSheet, Dictionary<string, string>> dic = new Dictionary<WorkSheet, Dictionary<string, string>>();

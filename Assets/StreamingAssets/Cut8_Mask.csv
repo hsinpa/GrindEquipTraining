@@ -1,3 +1,4 @@
-key,zhcht,en
-Cut8_Mask_Caption_0,[system]請依序完成：檢查濾材是否在有效期限內、面體有沒有破損,"[system]Check in order: the filter has not expired, and the facepiece is undamaged."
-Cut8_Mask_Caption_1,[system]接著調整束帶鬆緊，最後進行密合檢點,"[system]Next, adjust the straps, then perform a seal check."
+key,zhcht,en,id,th,vi
+Cut8_Mask_Caption_0,[system]請依序點選步驟 第一步：檢查濾材是否在有效期限內、面體有沒有破損,[system]Select the steps in order. Step 1: check that the filter has not expired and the facepiece is undamaged.,[system]Pilih langkah secara berurutan. Langkah 1: periksa filter belum kedaluwarsa dan bagian muka respirator tidak rusak.,[system]เลือกขั้นตอนตามลำดับ ขั้นที่ 1: ตรวจว่าไส้กรองยังไม่หมดอายุ และตัวหน้ากากไม่ชำรุด,[system]Chọn các bước theo thứ tự. Bước 1: kiểm tra vật liệu lọc còn hạn và thân mặt nạ không hư hỏng.
+Cut8_Mask_Caption_1,[system]第二步:調整束帶鬆緊,[system]Step 2: adjust the strap tension.,[system]Langkah 2: atur kekencangan tali.,[system]ขั้นที่ 2: ปรับความแน่นของสายรัด,[system]Bước 2: điều chỉnh độ căng dây đeo.
+Cut8_Mask_Caption_2,[system]第三步:進行密合檢點,[system]Step 3: perform a seal check.,[system]Langkah 3: lakukan cek kerapatan.,[system]ขั้นที่ 3: ตรวจความแนบสนิท,[system]Bước 3: kiểm tra độ kín khít.

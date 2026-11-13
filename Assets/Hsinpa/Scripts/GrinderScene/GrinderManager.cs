@@ -60,13 +60,7 @@ namespace Hsinpa
         private Animator scene7MaskButtonUI;
 
         [SerializeField]
-        private SimpleSelectCollider scene7CorrectHeadCollider;
-
-        [SerializeField]
-        private SimpleSelectCollider scene7Wrong1HeadCollider;
-
-        [SerializeField]
-        private SimpleSelectCollider scene7Wrong2HeadCollider;
+        private Scene7Collider[] scene7HeadStepColliders;
 
         [Header("Audio")]
         [SerializeField]
@@ -89,6 +83,7 @@ namespace Hsinpa
 
         private bool scene7IsAirMachineClickFlag = false;
         private bool scene7IsNoseClickFlag = false;
+        private int scene7HeadSequence = 0;
         private CaptionCameraCtrl _captionCtrl;
 
         public void SetUp(CaptionCameraCtrl captionCtrl)
@@ -106,9 +101,11 @@ namespace Hsinpa
                 c.isSelectedCallback += OnColliderSelected;
             }
 
-            scene7CorrectHeadCollider.isSelectedCallback += OnScene7CorrectHeadSelect;
-            scene7Wrong1HeadCollider.isSelectedCallback += OnScene7WrongHeadSelect;
-            scene7Wrong2HeadCollider.isSelectedCallback += OnScene7WrongHeadSelect;
+            for (int s_index = 0; s_index < scene7HeadStepColliders.Length; s_index++) {
+                int index = s_index;
+                var collider = scene7HeadStepColliders[index];
+                collider.isSelectedCallback += () => OnScene7HeadSelect(index, collider);
+            }
 
             scene7AirMachineCollider.isSelectedCallback += OnAirMachineBtnSelect;
 
@@ -202,9 +199,9 @@ namespace Hsinpa
             scene7GrinderButtonUI.gameObject.SetActive(true);
             scene7GrinderButtonUI.SetBool("flash", true);
 
-            scene7CorrectHeadCollider.GetParentObject()?.gameObject.SetActive(true);
-            scene7Wrong1HeadCollider.GetParentObject()?.gameObject.SetActive(true);
-            scene7Wrong2HeadCollider.GetParentObject()?.gameObject.SetActive(true);
+            foreach (var i in scene7HeadStepColliders) {
+                i.GetParentObject()?.gameObject.SetActive(true);
+            }
 
             scene7AirMachineCollider.Interaction(true);
 
@@ -288,30 +285,51 @@ namespace Hsinpa
         {
             airMachineAudio.Play(); 
             await _captionCtrl.PlayAsync(LocalizationManager.WorkSheet.Cut8_AirComplete);
-            await _captionCtrl.PlayAsync(LocalizationManager.WorkSheet.Cut8_Mask);
+            await _captionCtrl.PlayAsync(LocalizationManager.WorkSheet.Cut8_Mask_Step_1);
 
             scene7MaskButtonUI.gameObject.SetActive(true);
             this.scene7IsAirMachineClickFlag = true;
             scene7GrinderButtonUI.gameObject.SetActive(false);
 
-            scene7CorrectHeadCollider.Interaction(true);
-            scene7Wrong1HeadCollider.Interaction(true);
-            scene7Wrong2HeadCollider.Interaction(true);
+
+            foreach (var i in scene7HeadStepColliders) {
+                i.Interaction(true);
+            }
         }
 
-        private async void OnScene7CorrectHeadSelect()
+        private async void OnScene7HeadSelect(int sequence_index, Scene7Collider collider)
         {
+            Debug.Log($"Index {sequence_index}");
             if (this.scene7IsAirMachineClickFlag)
             {
-                UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.UI_CLICK); 
-                scene7MaskButtonUI.gameObject.SetActive(false);
-                SimpleEventSystem.Send(StaticEvent.TaskStatusEvent, TaskStatus.Step, true);     
-                messageHolder.SetContent(Loc.Get("SCENE7MOUTHNOTICE"),Loc.Get("SCENE7MOUTHTITLE"), MessageHolder.IconState.Info);
-
-                _captionCtrl.Play(LocalizationManager.WorkSheet.Cut8_MaskComplete, () =>
+                if (sequence_index == scene7HeadSequence)
                 {
-                    this.completeScene7Callback?.Invoke(); 
-                });
+                    collider.Interaction(false);
+                    collider.ShowIndicator(true, true);
+                    UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.UI_CLICK); 
+
+                    if (sequence_index == 0) _captionCtrl.Play(LocalizationManager.WorkSheet.Cut8_Mask_Step_2);
+                    if (sequence_index == 1) _captionCtrl.Play(LocalizationManager.WorkSheet.Cut8_Mask_Step_3);
+
+                    scene7HeadSequence += 1;
+                } else
+                {
+                    SimpleEventSystem.Send(StaticEvent.TaskStatusEvent, TaskStatus.Step, false);     
+                    UniversalAudioSolution.instance.PlayAudio(UniversalAudioSolution.AudioType.UI, Audio.TAG, Audio.WRONG_CHOICE); 
+                    collider.ShowIndicator(true, false);
+                }
+
+                if (scene7HeadSequence == 3)
+                {
+                    _captionCtrl.Stop();
+                    scene7MaskButtonUI.gameObject.SetActive(false);
+                    SimpleEventSystem.Send(StaticEvent.TaskStatusEvent, TaskStatus.Step, true);     
+                    messageHolder.SetContent(Loc.Get("SCENE7MOUTHNOTICE"),Loc.Get("SCENE7MOUTHTITLE"), MessageHolder.IconState.Info);
+                    _captionCtrl.Play(LocalizationManager.WorkSheet.Cut8_MaskComplete, () =>
+                    {
+                        this.completeScene7Callback?.Invoke(); 
+                    });   
+                }
             }
         }
 
@@ -350,9 +368,9 @@ namespace Hsinpa
             grinderingAudio.Stop();
             grindToolTextCanvas.gameObject.SetActive(false);
 
-            scene7CorrectHeadCollider.GetParentObject()?.gameObject.SetActive(false);
-            scene7Wrong1HeadCollider.GetParentObject()?.gameObject.SetActive(false);
-            scene7Wrong2HeadCollider.GetParentObject()?.gameObject.SetActive(false);
+            foreach (var i in scene7HeadStepColliders) {
+                i.GetParentObject()?.gameObject.SetActive(false);
+            }
         }
 
         public void Enter()

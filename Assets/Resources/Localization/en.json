@@ -54,5 +54,6 @@
   "SUPERVISOR": "Supervisor",
   "CAPTION_MANAGER": "Manager",
   "CAPTION_SYSTEM": "System",    
-  "LOADING": "Loading . . ."
+  "LOADING": "Loading . . .",
+  "CONFIRM": "Confirm"
 }
